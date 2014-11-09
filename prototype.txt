@@ -1,0 +1,13 @@
+Tool for analyzing teams picks and comps in profesional gameplay.
+
+Target - NA and EU 
+
+Prototype Functionality
+
+-Display Team Rosters, tallying how many times a player has played a given champion for that split.
+-Track Team bans
+-View last time a champion was played (and by who) in competitive play.
+
+WebApp 
+
+total.js

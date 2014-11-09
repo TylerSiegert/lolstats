@@ -1,0 +1,58 @@
+TEAM
+
+long teamID - pk
+varchar name
+long topID - fk
+long jungleID - fk
+long midID - fk
+long adcID - fk
+long supportID - fk
+
+Player
+
+long playerID - pk
+varchar name
+
+Game
+long gameID - pk
+long draftID - fk
+bit result
+
+Draft
+long draftID - pk
+long blue - fk
+long red - fk
+long banID - fk
+long pickID - fk
+long btopID
+long rtopID
+long bjungID
+long rjungID
+long bmidID
+long rmidID
+long badcID
+long radcID
+long bsuppID
+long rsuppID
+
+BANS
+long banID - pk
+long ban1 
+long ban2
+long ban3
+long ban4
+long ban5
+long ban6
+
+PICKS
+long pickID - pk
+long pick1
+long pick2
+long pick3
+long pick4
+long pick5
+long pick6
+long pick7
+long pick8
+long pick9
+long pick10

@@ -1,0 +1,94 @@
+SET FOREIGN_KEY_CHECKS = 0;
+DROP TABLE IF EXISTS BAN, PICK, GAME, DRAFT, TEAM, PLAYER;
+SET FOREIGN_KEY_CHECKS = 1;
+
+CREATE TABLE PLAYER
+(
+playerID smallint NOT NULL,
+playerName varchar(30) NOT NULL,
+PRIMARY KEY (playerID)
+);
+
+CREATE TABLE TEAM
+(
+teamID smallint NOT NULL,
+name varchar(30) NOT NULL,
+topID smallint NOT NULL,
+jungleID smallint NOT NULL,
+midID smallint NOT NULL,
+adcID smallint NOT NULL,
+supportID smallint NOT NULL,
+PRIMARY KEY (teamID),
+FOREIGN KEY (topID) REFERENCES PLAYER(playerID),
+FOREIGN KEY (jungleID) REFERENCES PLAYER(playerID),
+FOREIGN KEY (midID) REFERENCES PLAYER(playerID),
+FOREIGN KEY (adcID) REFERENCES PLAYER(playerID),
+FOREIGN KEY (supportID) REFERENCES PLAYER(playerID)
+);
+
+CREATE TABLE BAN
+(
+banID smallint NOT NULL,
+ban1 smallint,
+ban2 smallint, 
+ban3 smallint,
+ban4 smallint,
+ban5 smallint,
+ban6 smallint,
+PRIMARY KEY (banID)
+);
+
+CREATE TABLE PICK
+(
+pickID smallint NOT NULL,
+pick1 smallint NOT NULL,
+pick2 smallint NOT NULL,
+pick3 smallint NOT NULL,
+pick4 smallint NOT NULL,
+pick5 smallint NOT NULL,
+pick6 smallint NOT NULL,
+pick7 smallint NOT NULL,
+pick8 smallint NOT NULL,
+pick9 smallint NOT NULL,
+pick10 smallint NOT NULL,
+PRIMARY KEY (pickID)
+);
+
+CREATE TABLE DRAFT
+(
+draftID smallint NOT NULL,
+blueTeam smallint NOT NULL,
+redTeam smallint NOT NULL,
+banID smallint NOT NULL,
+pickID smallint NOT NULL,
+btopID smallint NOT NULL,
+rtopID smallint NOT NULL,
+bjungleID smallint NOT NULL,
+rjungleID smallint NOT NULL,
+bmidID smallint NOT NULL,
+rmidID smallint NOT NULL,
+badcID smallint NOT NULL,
+radcID smallint NOT NULL,
+bsupportID smallint NOT NULL,
+rsupportID smallint NOT NULL,
+PRIMARY KEY (draftID),
+FOREIGN KEY (blueTeam) REFERENCES TEAM(teamID),
+FOREIGN KEY (redTeam) REFERENCES TEAM(teamID),
+FOREIGN KEY (banID) REFERENCES BAN(banID),
+FOREIGN KEY (pickID) REFERENCES PICK(pickID)
+);
+
+CREATE TABLE GAME
+(
+gameID smallint NOT NULL,
+draftID smallint NOT NULL,
+result bit(1) NOT NULL,
+PRIMARY KEY (gameID),
+FOREIGN KEY (draftID) REFERENCES DRAFT(draftID)
+);
+
+INSERT INTO PLAYER (playerName, playerID)
+VALUES ('Sneaky', 0), ('Balls', 1), ('LemonNation', 2), ('Hai', 3), ('Meteos', 4), ('WildTurtle', 5), ('Bjergsen', 6), ('Amazing', 7), ('Lustboy', 8), ('Dyrus', 9), ('Seraph', 10), ('Link', 11), ('Doublelift', 12), ('Aphromoo', 13), ('Dexter', 14);
+
+INSERT INTO TEAM (teamID, name, topID, jungleID, midID, adcID, supportID)
+VALUES (0, 'Cloud 9', 1, 4, 3, 0, 2), (1, 'Team Solo Mid', 9, 7, 6, 5, 8), (2, 'Counter Logic Gaming', 10, 14, 11, 12, 13);
